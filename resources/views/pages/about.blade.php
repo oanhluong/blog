@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    About {{$data['email']}}
                 </div>
 
                 <div class="links">
