@@ -8,6 +8,8 @@
         <div class="container">
             @yield('content')
         </div>
+        <hr>
+        
         @include('partials._javascript')
         @yield('scripts')
     </body>
