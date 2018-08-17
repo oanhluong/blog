@@ -5,7 +5,6 @@
     </head>
     <body>
         @include('partials._navbar')
-        <h1>Hello, world!</h1>
         <div class="container">
             @yield('content')
         </div>
