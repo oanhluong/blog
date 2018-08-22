@@ -45,7 +45,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->body = $request->body;
         $post->save();
-        Session::flash('success', 'The blog post was successfully save!');
+        //Session::flash('success', 'The blog post was successfully save!');
         return redirect()->route('posts.show', $post->id);
     }
 
@@ -57,7 +57,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        return view('posts.show');
+        $post = Post::find($id);
+        return view('posts.show')->with('post', $post);
     }
 
     /**
