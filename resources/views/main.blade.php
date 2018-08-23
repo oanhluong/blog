@@ -10,7 +10,7 @@
             @yield('content')
         </div>
         <hr>
-        
+        @include('partials._footer')
         @include('partials._javascript')
         @yield('scripts')
     </body>
