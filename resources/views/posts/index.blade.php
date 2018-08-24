@@ -30,8 +30,8 @@
                         <tr>
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->title }}</td>
-                            <td>{{ substr($item->body, 0, 50) }}{{strlen($item->body) > 50 ? "..." : ""}}</td>
-                            <td>{{ date('d/m/Y H:m:s', strtotime($item->created_at))}}</td>
+                            <td>{{ substr($item->body, 0, 20) }}{{ strlen($item->body) > 50 ? "..." : "" }}</td>
+                            <td>{{ date('d/m/Y', strtotime($item->created_at))}}</td>
                             <td>{{ Html::linkRoute('posts.show', 'View', array($item->id), array('class'=>'btn btn-sm btn-default'))}}
                                 {{ Html::linkRoute('posts.edit', 'Edit', array($item->id), array('class'=>'btn btn-sm btn-default'))}}
                             </td>

@@ -2,14 +2,22 @@
 
 @section('title', '| Post Edit')
 
+@section('stylesheets')
+    {!! Html::style('css/parsley.css') !!}
+@endsection
+
 @section('content')
     <div class="row">
-        {!! Form::model($post, ['route' => ['posts.update', $post->id]]) !!}
+        {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'data-parsley-validate' => '']) !!}
         <div class="col-md-8">
             
-            {!! Form::text('title', null, ['class' => 'form-control']) !!}
+            {!! Form::label('title', 'Title:') !!}
             
-            {!! Form::textarea('body', null, ['class' => 'form-control']) !!}            
+            {!! Form::text('title', null, ['class' => 'form-control', 'required' => '', 'maxlength' => '255']) !!}
+            
+            {!! Form::label('body', 'Body:') !!}
+            
+            {!! Form::textarea('body', null, ['class' => 'form-control', 'required' => '']) !!}            
         </div>
         <div class="col-md-4">
             <div class="well">
@@ -24,14 +32,18 @@
                 <hr>
                 <div class="row">
                     <div class="col-sm-6">
-                        {!! Html::linkRoute('posts.show', 'Cancel', array($post->id), array('class' => 'btn btn-danger btn-block')) !!}
+                        {!! Html::linkRoute('posts.index', 'Cancel', null, array('class' => 'btn btn-danger btn-block')) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! Html::linkRoute('posts.update', 'Save Changes', array($post->id), array('class' => 'btn btn-primary btn-block')) !!}
+                        {!! Form::submit('Save Changes', ['class' => 'btn btn-primary btn-block']) !!}
                     </div>
                 </div>
             </div>
         </div>
         {!! Form::close() !!}
     </div>
+@endsection
+
+@section('scripts')
+    {!! Html::script('js/parsley.min.js') !!}
 @endsection
