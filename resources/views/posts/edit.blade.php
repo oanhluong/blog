@@ -17,7 +17,7 @@
             
             {!! Form::label('body', 'Body:') !!}
             
-            {!! Form::textarea('body', null, ['class' => 'form-control', 'required' => '']) !!}            
+            {!! Form::textarea('body', null, ['class' => 'form-control', 'required' => '']) !!}
         </div>
         <div class="col-md-4">
             <div class="well">
