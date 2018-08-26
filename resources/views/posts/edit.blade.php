@@ -10,17 +10,21 @@
     <div class="row">
         {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'data-parsley-validate' => '']) !!}
         <div class="col-md-8">
-            {{ Form::label('title', 'Title:') }
+            {{ Form::label('title', 'Title:') }}
             {{ Form::text('title', null, ['class' => 'form-control', 'required' => '', 'maxlength' => '255']) }}
 
             {{ Form::label('slug', 'Slug:') }}
             {{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255', 'minlength' => '5')) }}
 
-            {{ Form::label('body', 'Body:') !!}
+            {{ Form::label('body', 'Body:') }}
             {{ Form::textarea('body', null, ['class' => 'form-control', 'required' => '']) }}
         </div>
         <div class="col-md-4">
             <div class="well">
+                <dl class ="dl-horizontal">
+                    <label>Url Slug:</label>
+                    <p><a href="{{ route('blog.single', $post->slug) }}">{{ url($post->slug) }}</a></p>
+                </dl>
                 <dl class="dl-horizontal">
                     <dt>Create At:</dt>
                     <dd>{{ date('d/m/Y H:m:s', strtotime($post->created_at))}}</dd>

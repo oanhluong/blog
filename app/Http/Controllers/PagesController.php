@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Post;
 
 class PagesController extends Controller
 {
     public function getIndex()
     {
-        return redirect()->route('posts.index');
+        $posts = Post::all();
+        return view('pages.welcome')->withPosts($posts);
     }
 
     public function getAbout()
