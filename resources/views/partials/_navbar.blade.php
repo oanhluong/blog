@@ -67,11 +67,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            
-                            {!! Form::open(array('route' => 'logout', 'method' => 'POST')) !!}
-                                
-                                {!! Form::submit('Logout') !!}
-                                
+                            <a href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                            {!! Form::open(array('method' => 'POST', 'id' => 'logout-form', 'route' => 'logout', 'style' => 'dislay:none;')) !!}
+                                @csrf
                             {!! Form::close() !!}
                         </li>
                         <li>
