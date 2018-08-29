@@ -67,13 +67,17 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
+                            @if(Auth::check())
                             <a href="{{ route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                             {!! Form::open(array('method' => 'POST', 'id' => 'logout-form', 'route' => 'logout', 'style' => 'dislay:none;')) !!}
                                 @csrf
                             {!! Form::close() !!}
+                            @else
+                            <a href="{{route('login')}}">Login</a>
+                            @endif
                         </li>
                         <li>
-                            <a href="#">Another action</a>
+                            <a href="{{ route('register')}}">Register</a>
                         </li>
                         <li>
                             <a href="#">Something else here</a>
