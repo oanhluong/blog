@@ -67,7 +67,12 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">Action</a>
+                            
+                            {!! Form::open(array('route' => 'logout', 'method' => 'POST')) !!}
+                                
+                                {!! Form::submit('Logout') !!}
+                                
+                            {!! Form::close() !!}
                         </li>
                         <li>
                             <a href="#">Another action</a>
