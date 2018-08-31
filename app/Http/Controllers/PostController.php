@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use Session;
+use App\Requests\PostRequest;
 
 class PostController extends Controller
 {
@@ -35,14 +36,8 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        // validate data
-        $this->validate($request, array(
-            'title' => 'required|max:255',
-            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-            'body' => 'required'
-        ));
         $post = new Post;
         $post->title = $request->title;
         $post->slug = $request->slug;
@@ -83,22 +78,22 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
         $post = Post::find($id);
-        if($request->input('slug') == $post->slug){
-            $this->validate($request, array(
-                'title' => 'required|max:255',
-                'body' => 'required'
-            ));
-        }
-        else{
-            $this->validate($request, array(
-                'title' => 'required|max:255',
-                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-                'body' => 'required'
-            ));
-        }
+        // if($request->input('slug') == $post->slug){
+        //     $this->validate($request, array(
+        //         'title' => 'required|max:255',
+        //         'body' => 'required'
+        //     ));
+        // }
+        // else{
+        //     $this->validate($request, array(
+        //         'title' => 'required|max:255',
+        //         'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+        //         'body' => 'required'
+        //     ));
+        // }
         
         
         $post->title = $request->input('title');
