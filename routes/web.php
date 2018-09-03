@@ -23,7 +23,8 @@ Route::group(['middleware' => ['web', 'auth']], function() {
     Route::get('/', 'PagesController@getIndex');
     Route::get('contact','PagesController@getContact');
     Route::get('about','PagesController@getAbout');
-    Route::resource('posts', 'PostController');
+    Route::resource('posts', 'PostController')->parameters(['posts' => 'id']);
+    Route::resource('categories', 'CategoryController')->parameters(['categories' => 'id']);
 });
 
 Auth::routes();
