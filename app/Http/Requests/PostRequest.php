@@ -14,7 +14,7 @@ class PostRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,16 +24,18 @@ class PostRequest extends FormRequest
      */
     public function rules()
     {
-        if($this->isMethod('post'))
-        {
-            return [
+        $rule = [
                 'title' => 'required|max:255',
                 'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
                 'body' => 'required'
             ];
+        if($this->isMethod('post'))
+        {
+            return $rule;
         }
         else
         {
+            $id = $this->route('post');
             $post = Post::find($id);
             if ($this->input('slug') == $post->slug) {
                 return [
@@ -41,11 +43,7 @@ class PostRequest extends FormRequest
                     'body' => 'required'
                 ];
             } else {
-                return [
-                    'title' => 'required|max:255',
-                    'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-                    'body' => 'required'
-                ];
+                return $rule;
             }
         }
     }
