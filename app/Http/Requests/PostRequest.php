@@ -35,7 +35,7 @@ class PostRequest extends FormRequest
         }
         else
         {
-            $id = $this->route('post');
+            $id = $this->route('id');
             $post = Post::find($id);
             if ($this->input('slug') == $post->slug) {
                 return [
