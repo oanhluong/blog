@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use Session;
 use App\Http\Requests\PostRequest;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -27,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $categories = Category::all();
+        return view('posts.create')->withCategories($categories);
     }
 
     /**
@@ -42,6 +44,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->body = $request->body;
+        $post->category_id = $request->category;
         $post->save();
         //Session::flash('success', 'The blog post was successfully save!');
         return redirect()->route('posts.show', $post->id);
@@ -67,8 +70,13 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        $categories = Category::all();
+        $cats = array();
+        foreach($categories as $cat){
+            $cats[$cat->id] = $cat->name;
+        }
         $post = Post::Find($id);
-        return view('posts.edit')->withPost($post);
+        return view('posts.edit')->withPost($post)->withCategories($cats);
     }
 
     /**
@@ -84,6 +92,7 @@ class PostController extends Controller
         $post->title = $request->input('title');
         $post->slug = $request->input('slug');
         $post->body = $request->input('body');
+        $post->category_id = $request->category;
         $post->save();
         return redirect()->route('posts.show', $post->id);
     }

@@ -15,7 +15,10 @@
 
             {{ Form::label('slug', 'Slug:') }}
             {{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255', 'minlength' => '5')) }}
-
+            {!! Form::label('category', 'Category:') !!}
+            
+            {!! Form::select('category', $categories, $post->category_id, ['class' => 'form-control']) !!}
+            
             {{ Form::label('body', 'Body:') }}
             {{ Form::textarea('body', null, ['class' => 'form-control', 'required' => '']) }}
         </div>
