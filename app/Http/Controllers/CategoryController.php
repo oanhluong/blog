@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Category;
 class CategoryController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $cats = Category::all();
+        return view('categories.index')->withCategories($cats);
     }
 
     /**
@@ -37,7 +38,7 @@ class CategoryController extends Controller
         $cat = New Category();
         $cat->name = $request->name;
         $cat->save();
-        return redirect()->route('categories.show', $cat->id);
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -48,7 +49,6 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**

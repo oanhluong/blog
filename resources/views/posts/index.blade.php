@@ -22,7 +22,7 @@
                     <th>#</th>
                     <th>Title</th>
                     <th>Body</th>
-                    <th>Crated At</th>
+                    <th>Created At</th>
                     <th></th>
                 </thead>
                 <tbody>
