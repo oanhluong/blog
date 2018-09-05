@@ -29,10 +29,12 @@
         </table>
     </div>
     <div class="col-md-3 col-md-offset-1">
-        {!! Form::open(array('route' => 'categories.store', 'data-parsley-validate' => '')) !!} 
-        {!! Form::label('name', 'Name:')!!}
-        {!! Form::text('name', null, ['class' => 'form-control', 'required' => '', 'maxlength' => '255']) !!}
-        {!! Form::submit('CreateNew Category', ['class' => 'btn btn-primary btn-sm btn-block', 'style' => 'margin-top:20px']) !!} {!! Form::close() !!}
+        <div class="well">
+            {!! Form::open(array('route' => 'categories.store', 'data-parsley-validate' => '')) !!} 
+            {!! Form::label('name', 'Name:')!!}
+            {!! Form::text('name', null, ['class' => 'form-control', 'required' => '', 'maxlength' => '255']) !!}
+            {!! Form::submit('CreateNew Category', ['class' => 'btn btn-primary btn-sm btn-block', 'style' => 'margin-top:20px']) !!} {!! Form::close() !!}
+        </div>
     </div>
 </div>
 @endsection
