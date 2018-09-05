@@ -1,35 +1,31 @@
-@extends('main')
-@section('title', '| All Categories')
-
-@section('content')
-    <div class="row">
-        <div class="col-md-10">
-            <h1>All Categories</h1>
-        </div>
-        <div class="col-md-2">
-            <a href="{{ route('categories.create') }}" class="btn btn-sm btn-block btn-primary">Create New Category</a>
-        </div>
+@extends('main') @section('title', ' | Create a new category') @section('stylesheets') {!! Html::style('css/parsley.css')
+!!} @endsection @section('content')
+<div class="row">
+    <h1>All Cateogries</h1>
+    <hr>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Name</th>
+            </thead>
+            <tbody>
+                @foreach ($categories as $cat)
+                <tr>
+                    <td>{{ $cat->id}}</td>
+                    <td>{{ $cat->name}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <table class="table">
-                <thead>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Created At</th>
-                    <th></th>
-                </thead>
-                <tbody>
-                    @foreach ($categories as $cat)
-                    <tr>
-                        <td>{{ $cat->id}}</td>
-                        <td>{{ $cat->name}}</td>
-                        <td>{{ date('d/m/Y', strtotime($cat->created_at)) }}</td>
-                        <td>{{Html::linkroute('categories.edit', 'Edit', array($cat->id), array('class'=>'btn btn-sm btn-default'))}}</td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+    <div class="col-md-3 col-md-offset-1">
+        {!! Form::open(array('route' => 'categories.store', 'data-parsley-validate' => '')) !!} {!! Form::label('name', 'Name:')
+        !!} {!! Form::text('name', null, ['class' => 'form-control', 'maxlength' => '255', 'minlength' => '1']) !!} {!! Form::submit('Create
+        New Category', ['class' => 'btn btn-primary btn-sm btn-block', 'style' => 'margin-top:20px']) !!} {!! Form::close()
+        !!}
     </div>
-@stop
+</div>
+@endsection
