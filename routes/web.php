@@ -25,6 +25,7 @@ Route::group(['middleware' => ['web', 'auth']], function() {
     Route::get('about','PagesController@getAbout');
     Route::resource('posts', 'PostController')->parameters(['posts' => 'id']);
     Route::resource('categories', 'CategoryController', ['except' => ['create']])->parameters(['categories' => 'id']);
+    Route::resource('tags', 'TagController', ['only' => ['index', 'store']])->parameters(['tags' => 'id']);;
 });
 
 Auth::routes();
