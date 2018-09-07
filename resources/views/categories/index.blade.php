@@ -33,7 +33,7 @@
             {!! Form::open(array('route' => 'categories.store', 'data-parsley-validate' => '')) !!} 
             {!! Form::label('name', 'Name:')!!}
             {!! Form::text('name', null, ['class' => 'form-control', 'required' => '', 'maxlength' => '255']) !!}
-            {!! Form::submit('CreateNew Category', ['class' => 'btn btn-primary btn-sm btn-block', 'style' => 'margin-top:20px']) !!} {!! Form::close() !!}
+            {!! Form::submit('Create', ['class' => 'btn btn-primary btn-sm btn-block', 'style' => 'margin-top:20px']) !!} {!! Form::close() !!}
         </div>
     </div>
 </div>
