@@ -7,6 +7,7 @@ use App\Post;
 use Session;
 use App\Http\Requests\PostRequest;
 use App\Category;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -29,7 +30,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('posts.create')->withCategories($categories);
+        $tags = Tag::all();
+        return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -46,6 +48,7 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->category_id = $request->category;
         $post->save();
+        $post->tags()->sync($request->tags, false);
         //Session::flash('success', 'The blog post was successfully save!');
         return redirect()->route('posts.show', $post->id);
     }
@@ -75,8 +78,14 @@ class PostController extends Controller
         foreach($categories as $cat){
             $cats[$cat->id] = $cat->name;
         }
+
+        $tags = Tag::all();
+        $tagArray = array();
+        foreach ($tags as $tag) {
+            $tagArray[$tag->id] = $tag->name;
+        }
         $post = Post::Find($id);
-        return view('posts.edit')->withPost($post)->withCategories($cats);
+        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tagArray);
     }
 
     /**

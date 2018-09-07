@@ -4,6 +4,7 @@
 
 @section('stylesheets')
     {!! Html::style('css/parsley.css') !!}
+    {!! Html::style('css/select2.min.css') !!}
 @endsection
 
 @section('content')
@@ -16,9 +17,9 @@
             {{ Form::label('slug', 'Slug:') }}
             {{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255', 'minlength' => '5')) }}
             {!! Form::label('category', 'Category:') !!}
-            
             {!! Form::select('category', $categories, $post->category_id, ['class' => 'form-control']) !!}
-            
+            {!! Form::label('tags', 'Tags:') !!}
+            {!! Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multiple', 'multiple' => 'multiple']) !!}
             {{ Form::label('body', 'Body:') }}
             {{ Form::textarea('body', null, ['class' => 'form-control', 'required' => '']) }}
         </div>
@@ -53,4 +54,8 @@
 
 @section('scripts')
     {!! Html::script('js/parsley.min.js') !!}
+    {!! Html::script('js/select2.min.js') !!}
+    <script type="text/javascript">
+        $(".select2-multiple").select2();
+    </script>
 @endsection

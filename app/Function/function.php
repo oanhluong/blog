@@ -1,3 +1,4 @@
+<?php
 /*
  Them vao composer:
  
@@ -9,7 +10,6 @@
 	
 	run: composer dumpautoload
  */
-<?php
 function stripUnicode($str){
   if(!$str) return false;
    $unicode = array(
