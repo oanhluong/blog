@@ -57,5 +57,6 @@
     {!! Html::script('js/select2.min.js') !!}
     <script type="text/javascript">
         $(".select2-multiple").select2();
+        $(".select2-multiple").select2().val({!! json_encode($post->tags()->allRelatedIds()) !!}).trigger('change');
     </script>
 @endsection

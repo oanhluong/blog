@@ -103,6 +103,7 @@ class PostController extends Controller
         $post->body = $request->input('body');
         $post->category_id = $request->category;
         $post->save();
+        $post->tags()->sync($request->tags, true);
         return redirect()->route('posts.show', $post->id);
     }
 
